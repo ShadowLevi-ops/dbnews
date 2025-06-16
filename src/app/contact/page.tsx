@@ -25,10 +25,14 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Contact Us</h1>
+          <h1 className="text-4xl font-bold mb-8">
+            <span className="bg-gradient-to-r from-orange-600 to-purple-700 bg-clip-text text-transparent">
+              Contact Us
+            </span>
+          </h1>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Information */}
@@ -37,22 +41,25 @@ export default function Contact() {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">Address</h3>
-                  <p className="text-gray-600">123 Book Street, Sydney</p>
+                  <p className="text-gray-600">390 New South Head Road, Double Bay NSW 2028</p>
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">Phone</h3>
-                  <p className="text-gray-600">(02) 1234 5678</p>
+                  <p className="text-gray-600">(02) 93273222</p>
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">Email</h3>
-                  <p className="text-gray-600">contact@bookstore.com</p>
+                  <p className="text-gray-600">doublebaynews@gmail.com</p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-gray-900">Fax</h3>
+                  <p className="text-gray-600">(02) 93272228</p>
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-gray-900">Trading Hours</h3>
                   <p className="text-gray-600">
-                    Monday - Friday: 9:00 AM - 6:00 PM<br />
-                    Saturday: 9:00 AM - 5:00 PM<br />
-                    Sunday: 10:00 AM - 4:00 PM
+                    Monday - Saturday: 6:00 AM - 5:00 PM<br />
+                    Sunday: 7:00 AM - 2:00 PM
                   </p>
                 </div>
               </div>

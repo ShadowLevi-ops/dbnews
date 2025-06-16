@@ -33,9 +33,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-1">
             {[
               { href: '/services', label: 'Services' },
+              { href: '/catalog/printing-services', label: 'Printing Services' },
               { href: '/diaries', label: 'Diaries & Planners' },
-              { href: '/printing', label: 'Printing Services' },
-              { href: '/local-business', label: 'Local Business' },
               { href: '/contact', label: 'Contact' },
             ].map((item) => (
               <Link
@@ -80,9 +79,8 @@ const Navbar = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-gray-50/95 backdrop-blur-sm border-t border-gray-200">
           {[
             { href: '/services', label: 'Services' },
+            { href: '/catalog/printing-services', label: 'Printing Services' },
             { href: '/diaries', label: 'Diaries & Planners' },
-            { href: '/printing', label: 'Printing Services' },
-            { href: '/local-business', label: 'Local Business' },
             { href: '/contact', label: 'Contact' },
           ].map((item, index) => (
             <Link
