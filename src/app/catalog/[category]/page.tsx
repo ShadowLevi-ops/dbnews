@@ -1,7 +1,3 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
 import Link from 'next/link';
 
 interface Product {
@@ -280,24 +276,10 @@ const categoryInfo = {
   },
 };
 
-export default function CatalogPage() {
-  const params = useParams();
-  const category = params.category as string;
-  const [filter, setFilter] = useState('all');
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+export default function CatalogPage({ params }: { params: { category: string } }) {
+  const category = params.category;
   const categoryData = categoryInfo[category as keyof typeof categoryInfo];
   const products = catalogData[category] || [];
-
-  const filteredProducts = filter === 'all' 
-    ? products 
-    : products.filter(product => product.category === filter);
-
-  const uniqueCategories = ['all', ...Array.from(new Set(products.map(p => p.category)))];
 
   if (!categoryData) {
     return (
@@ -319,12 +301,12 @@ export default function CatalogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <div className="text-6xl mb-4">{categoryData.icon}</div>
-            <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${mounted ? 'slide-up' : 'opacity-0'}`}>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="bg-gradient-to-r from-orange-600 to-purple-700 bg-clip-text text-transparent leading-tight pb-2">
                 {categoryData.title}
               </span>
             </h1>
-            <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${mounted ? 'fade-in' : 'opacity-0'}`}>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               {categoryData.description}
             </p>
           </div>
@@ -350,37 +332,15 @@ export default function CatalogPage() {
         </div>
       </section>
 
-      {/* Filter Section */}
-      <section className="py-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-2">
-            {uniqueCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-4 py-2 rounded-full font-medium transition-all duration-300 ${
-                  filter === cat
-                    ? 'bg-gradient-to-r from-orange-600 to-orange-700 text-white shadow-lg'
-                    : 'bg-white text-gray-700 hover:bg-orange-50 hover:text-orange-600 shadow-md'
-                }`}
-              >
-                {cat === 'all' ? 'All Items' : cat.charAt(0).toUpperCase() + cat.slice(1)}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Products Grid */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {filteredProducts.length > 0 ? (
+          {products.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product, index) => (
+              {products.map((product, index) => (
                 <div
                   key={product.id}
                   className="group content-section rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-orange-300"
-                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="relative">
                     <div className={`w-full h-32 bg-gradient-to-br ${categoryData.color} opacity-20 rounded-lg mb-4 flex items-center justify-center text-4xl group-hover:opacity-30 transition-opacity duration-300`}>
@@ -422,7 +382,7 @@ export default function CatalogPage() {
             <div className="text-center py-12">
               <div className="text-6xl mb-4">📦</div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">No items found</h3>
-              <p className="text-gray-600">Try adjusting your filter or check back later.</p>
+              <p className="text-gray-600">Please check back later for new products.</p>
             </div>
           )}
         </div>
