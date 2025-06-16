@@ -229,6 +229,18 @@ const catalogData: Record<string, Product[]> = {
   ],
 };
 
+// Generate static paths for all catalog categories
+export async function generateStaticParams() {
+  return [
+    { category: 'magazines-newspapers' },
+    { category: 'cards-wraps' },
+    { category: 'stationery' },
+    { category: 'gifts' },
+    { category: 'lotto-opal' },
+    { category: 'printing-services' },
+  ];
+}
+
 const categoryInfo = {
   'magazines-newspapers': {
     title: 'Magazines & Newspapers',
